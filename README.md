@@ -2,7 +2,7 @@
 COSC 522 Project 3: Back Propagation Neural Networks (BPNN)
 Owen Queen
 
-The report for this project is in .
+The report for this project is in [oqueen_proj3.pdf](https://github.com/owencqueen/ML_Project3/blob/main/oqueen_proj3.pdf).
 
 ![digits](https://github.com/owencqueen/ML_Project3/blob/main/mnist_pictures.png)
 
