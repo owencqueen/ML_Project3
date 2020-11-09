@@ -7,7 +7,7 @@ The report for this project is in .
 ![digits](https://github.com/owencqueen/ML_Project3/blob/main/mnist_pictures.png)
 
 ## Running the code
-Please see the Jupyter Notebook `run_project3.ipynb` in order to run the code. This file will contain any information about running code that is not in the Notebook file.
+Please see the Jupyter Notebook [`run_project3.ipynb`](https://github.com/owencqueen/ML_Project3/blob/main/run_project3.ipynb) in order to run the code. This file will contain any information about running code that is not in the Notebook file.
 
 ## Dependencies:
 The programs in this repository use the following Python third-party modules:
