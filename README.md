@@ -10,6 +10,8 @@ The report for this project is in [oqueen_proj3.pdf](https://github.com/owencque
 Please see the Jupyter Notebook [`run_project3.ipynb`](https://github.com/owencqueen/ML_Project3/blob/main/run_project3.ipynb) in order to run the code. This file will contain any information about running code that is not in the Notebook file.
 
 ### Before running:
+You should only follow these directions if you have cloned the directory to obtain this code.
+
 You need to create several directories in the task2 directory. First, create a directory named `pca_mnist` with child directories named `knn_pca`, `train`, `test`, and `validation`. Next, create a directory named `knn_mnist`. Then you should be able to run the code. 
 
 ## Dependencies:
