@@ -42,7 +42,7 @@ def load_data(filename = 'mnist.pkl.gz'):
     f.close()
     return (training_data, validation_data, test_data)
 
-def load_data_wrapper(filename = 'mnist.pkl.gz'):
+def load_data_wrapper(filename = 'mnist.pkl.gz', output_size = (28, 28)):
     """Return a tuple containing ``(training_data, validation_data,
     test_data)``. Based on ``load_data``, but the format is more
     convenient for use in our implementation of neural networks.
@@ -61,17 +61,17 @@ def load_data_wrapper(filename = 'mnist.pkl.gz'):
     turn out to be the most convenient for use in our neural network
     code."""
     tr_d, va_d, te_d = load_data(filename)
-    #training_inputs = [np.reshape(x, (784, 1)) for x in tr_d[0]]
-    training_inputs = [np.reshape(x, (28, 28)) for x in tr_d[0]]
+    training_inputs = [np.reshape(x, output_size) for x in tr_d[0]]
+    #training_inputs = [np.reshape(x, (28, 28)) for x in tr_d[0]]
     training_results = [vectorized_result(y) for y in tr_d[1]]
     training_data = zip(training_inputs, training_results)
 
-    #validation_inputs = [np.reshape(x, (784, 1)) for x in va_d[0]]
-    validation_inputs = [np.reshape(x, (28, 28)) for x in va_d[0]]
+    validation_inputs = [np.reshape(x, output_size) for x in va_d[0]]
+    #validation_inputs = [np.reshape(x, (28, 28)) for x in va_d[0]]
     validation_data = zip(validation_inputs, va_d[1])
 
-    #test_inputs = [np.reshape(x, (784, 1)) for x in te_d[0]]
-    test_inputs = [np.reshape(x, (28, 28)) for x in te_d[0]]
+    test_inputs = [np.reshape(x, output_size) for x in te_d[0]]
+    #test_inputs = [np.reshape(x, (28, 28)) for x in te_d[0]]
     test_data = zip(test_inputs, te_d[1])
     return (training_data, validation_data, test_data)
 
@@ -85,14 +85,12 @@ def vectorized_result(j, num_classes = 10):
     return e
 
 def unvectorize_result(vec):
-
+    '''
+    Gets the scalar version of a label from a vectorized label
+    Note: I wrote this function myself
+    '''
     vec_comp = np.ravel(vec)
-    #print("vec comp: ", vec_comp.tolist(), "    Label: ", vec_comp.tolist().index(1.0))
     return vec_comp.tolist().index(1.0)
-
-    #for i in range(0, len(vec_comp)):
-    #    if (int(vec_comp[i]) == 1):
-    #        return i
 
 if __name__ == "__main__":
     '''
@@ -105,13 +103,12 @@ if __name__ == "__main__":
     test_list = list(test)
 
     total_list = train_list + val_list + test_list
-    #print(total_list[0][1])
-    #total_labels_test = [ unvectorize_result(total_list[i][1]) for i in range(0, len(total_list)) ]
 
     # Build the labels for every portion of the data
     total_labels_train = [ unvectorize_result(train_list[i][1]) for i in range(0, len(train_list)) ]
     total_labels_test = [test_list[i][1] for i in range(0, len(test_list))]
     total_labels_val = [val_list[i][1] for i in range(0, len(val_list))]
+    # Draw samples from all of the datasets
     total_labels = total_labels_train + total_labels_val + total_labels_test
 
     total_samples = [total_list[i][0] for i in range(0, len(total_list))]
@@ -134,10 +131,6 @@ if __name__ == "__main__":
         for rn in r_nums: # Goes and gets random samples, puts them in one spot
             random_pics[i].append(total_samples[rn])
 
-
-    #for i in range(0, len(random_pics)):
-    #    print(len(random_pics[i]))
-
     fig, axs = plt.subplots(10, 5, sharey = True, sharex = True)
     fig.suptitle("MNIST Data Samples")
 
@@ -145,5 +138,4 @@ if __name__ == "__main__":
         for j in range(0, 5): # Over the cols
             axs[i][j].imshow(random_pics[i][j], cmap = "gray")
 
-    #plt.imshow(random_pics[1][1])
     plt.show()
